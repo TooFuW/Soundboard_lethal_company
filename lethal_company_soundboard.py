@@ -1,4 +1,5 @@
 import pygame
+from icecream import ic
 
 class Button:
 
@@ -64,6 +65,7 @@ class Hud_state:
         ghostgirl.draw()
         bunkerspider.draw()
         coilhead.draw()
+        thumper.draw()
 
         pygame.display.flip()
 
@@ -126,6 +128,24 @@ class Hud_state:
         coilhead_springwobble2.draw()
         
         pygame.display.flip()
+        
+    def thumper(self):
+        screen.blit(background, (0, 0))
+        pygame.draw.rect(screen, (0, 0, 0), nav_bar)
+        back_button.draw()
+
+        thumper_biteplayer.draw()
+        thumper_crawlerdie.draw()
+        thumper_hitcrawler.draw()
+        thumper_longroar1.draw()
+        thumper_longroar2.draw()
+        thumper_longroar3.draw()
+        thumper_shortroar.draw()
+        thumper_stomp1.draw()
+        thumper_stomp2.draw()
+        thumper_stuncrawler.draw()
+        
+        pygame.display.flip()
 
     def state_manager(self):
         """state_manager se charge d'afficher la bonne interface en fonction de l'état de self.state
@@ -141,6 +161,8 @@ class Hud_state:
                 self.bunker_spider()
             case "Coil head":
                 self.coil_head()
+            case "Thumper":
+                self.thumper()
 
 # pygame setup
 pygame.init()
@@ -164,6 +186,7 @@ jester = Button(pygame.Rect(10, 55, 185, 50), "Jester")
 ghostgirl = Button(pygame.Rect(205, 55, 185, 50), "Ghost girl")
 bunkerspider = Button(pygame.Rect(10, 115, 185, 50), "Bunker spider")
 coilhead = Button(pygame.Rect(205, 115, 185, 50), "Coil head")
+thumper = Button(pygame.Rect(10, 175, 185, 50), "Thumper")
 # Boutons sons
 # Jester
 jester_music = Button(pygame.Rect(10, 55, 185, 50), "Jester music", f"{current_folder}jester_sounds\music.mp3")
@@ -191,12 +214,23 @@ bunkerspider_spiderdie = Button(pygame.Rect(10, 115, 185, 50), "Spider die", f"{
 bunkerspider_spiderhit = Button(pygame.Rect(205, 115, 185, 50), "Spider hit", f"{current_folder}bunkerspider_sounds\spiderhit.mp3")
 # Coil head
 coilhead_footstep = Button(pygame.Rect(10, 55, 185, 50), "Coil head footstep", f"{current_folder}coilhead_sounds\\footstep.mp3")
-coilhead_kill = Button(pygame.Rect(205, 55, 185, 50), "Coil head kill", f"{current_folder}coilhead_sounds\\kill.mp3")
+coilhead_kill = Button(pygame.Rect(205, 55, 185, 50), "Coil head kill", f"{current_folder}coilhead_sounds\kill.mp3")
 coilhead_spring1 = Button(pygame.Rect(10, 115, 185, 50), "Coil head spring 1", f"{current_folder}coilhead_sounds\spring1.mp3")
 coilhead_spring2 = Button(pygame.Rect(205, 115, 185, 50), "Coil head spring 2", f"{current_folder}coilhead_sounds\spring2.mp3")
 coilhead_spring3 = Button(pygame.Rect(10, 175, 185, 50), "Coil head spring 3", f"{current_folder}coilhead_sounds\spring3.mp3")
 coilhead_springwobble1 = Button(pygame.Rect(205, 175, 185, 50), "Coil head wobble 1", f"{current_folder}coilhead_sounds\springwobble1.mp3")
-coilhead_springwobble2 = Button(pygame.Rect(10, 235, 185, 50), "Coil head wobble 2", f"{current_folder}coilhead_sounds\\springwobble2.mp3")
+coilhead_springwobble2 = Button(pygame.Rect(10, 235, 185, 50), "Coil head wobble 2", f"{current_folder}coilhead_sounds\springwobble2.mp3")
+#Thumper
+thumper_biteplayer = Button(pygame.Rect(10, 55, 185, 50), "Thumper bite player", f"{current_folder}thumper_sounds\\biteplayer.mp3")
+thumper_crawlerdie = Button(pygame.Rect(205, 55, 185, 50), "Thumper crawler die", f"{current_folder}thumper_sounds\crawlerdie.mp3")
+thumper_hitcrawler = Button(pygame.Rect(10, 115, 185, 50), "Thumper hit crawler", f"{current_folder}thumper_sounds\hitcrawler.mp3")
+thumper_longroar1 = Button(pygame.Rect(205, 115, 185, 50), "Thumper long roar 1", f"{current_folder}thumper_sounds\longroar1.mp3")
+thumper_longroar2 = Button(pygame.Rect(10, 175, 185, 50), "Thumper long roar 2", f"{current_folder}thumper_sounds\longroar2.mp3")
+thumper_longroar3 = Button(pygame.Rect(205, 175, 185, 50), "Thumper long roar 3", f"{current_folder}thumper_sounds\longroar3.mp3")
+thumper_shortroar = Button(pygame.Rect(10, 235, 185, 50), "Thumper short roar", f"{current_folder}thumper_sounds\shortroar.mp3")
+thumper_stomp1 = Button(pygame.Rect(205, 235, 185, 50), "Thumper stomp 1", f"{current_folder}thumper_sounds\stomp1.mp3")
+thumper_stomp2 = Button(pygame.Rect(10, 295, 185, 50), "Thumper stomp 2", f"{current_folder}thumper_sounds\stomp2.mp3")
+thumper_stuncrawler = Button(pygame.Rect(205, 295, 185, 50), "Thumper stun crawler", f"{current_folder}thumper_sounds\stuncrawler.mp3")
 
 if __name__ == "__main__":
     while running:

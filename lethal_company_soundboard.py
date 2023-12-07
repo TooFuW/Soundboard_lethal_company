@@ -1,180 +1,13 @@
 import pygame
 
-def action_click(button):
-    global son_actuel, play_sound
-    match button.text:
-        case "Back":
-            game_state.state = game_state.previous_state
-        case "Jester":
-            game_state.previous_state = game_state.state
-            game_state.state = "jester"
-        case "Ghost girl":
-            game_state.previous_state = game_state.state
-            game_state.state = "ghostgirl"
-        case "Bunker spider":
-            game_state.previous_state = game_state.state
-            game_state.state = "bunkerspider"
-        case "Jester music":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Jester stomp 1":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Jester stomp 2":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Jester stomp 3":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Jester turncranck 1":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Jester turncranck 2":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Jester turncranck 3":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Jester pop":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Ghost girl breathe 1":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Ghost girl breathe 2":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Ghost girl laugh":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Ghost girl laugh":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Ghost girl skipwalk 1":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Ghost girl skipwalk 2":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Ghost girl skipwalk 3":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Ghost girl voicecry 1":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Ghost girl voicecry 2":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Ghost girl voicehey":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Spider breakweb":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Spider attack":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Spider die":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-        case "Spider hit":
-            try:
-                son_actuel.stop()
-            except:
-                pass
-            play_sound = True
-            son_actuel = button.son
-
 class Button:
 
     def __init__(self, rect : tuple, text : str, son : str = None):
         self.rect = pygame.Rect(rect)
         if son != None:
             self.son = pygame.mixer.Sound(son)
+        else:
+            self.son = son
         self.text = text
         gui_font = pygame.font.SysFont("Roboto", 25)
         self.text_surf = gui_font.render(text, True, (255, 255, 255))
@@ -189,6 +22,7 @@ class Button:
         self.check_click()
     
     def check_click(self):
+        global son_actuel, play_sound
         mouse_pos = pygame.mouse.get_pos()
         if self.rect.collidepoint(mouse_pos):
             if pygame.mouse.get_pressed()[0]:
@@ -197,7 +31,19 @@ class Button:
             else:
                 if self.pressed:
                     self.pressed = False
-                    action_click(self)
+                    if self.son is not None:
+                        try:
+                            son_actuel.stop()
+                        except:
+                            pass
+                        play_sound = True
+                        son_actuel = self.son
+                    else:
+                        if self.text == "Back":
+                            game_state.state = game_state.previous_state
+                        else:
+                            game_state.previous_state = game_state.state
+                            game_state.state = self.text
                 self.is_pressing = False
         else:
             self.pressed = False
@@ -207,8 +53,8 @@ class Button:
 class Hud_state:
 
     def __init__(self):
-        self.previous_state = "accueil"
-        self.state = "accueil"
+        self.previous_state = "Accueil"
+        self.state = "Accueil"
 
     def accueil(self):
         screen.blit(background, (0, 0))
@@ -217,6 +63,7 @@ class Hud_state:
         jester.draw()
         ghostgirl.draw()
         bunkerspider.draw()
+        coilhead.draw()
 
         pygame.display.flip()
 
@@ -264,19 +111,36 @@ class Hud_state:
         bunkerspider_spiderhit.draw()
         
         pygame.display.flip()
+        
+    def coil_head(self):
+        screen.blit(background, (0, 0))
+        pygame.draw.rect(screen, (0, 0, 0), nav_bar)
+        back_button.draw()
+
+        coilhead_footstep.draw()
+        coilhead_kill.draw()
+        coilhead_spring1.draw()
+        coilhead_spring2.draw()
+        coilhead_spring3.draw()
+        coilhead_springwobble1.draw()
+        coilhead_springwobble2.draw()
+        
+        pygame.display.flip()
 
     def state_manager(self):
         """state_manager se charge d'afficher la bonne interface en fonction de l'état de self.state
         """
         match self.state:
-            case "accueil":
+            case "Accueil":
                 self.accueil()
-            case "jester":
+            case "Jester":
                 self.jester()
-            case "ghostgirl":
+            case "Ghost girl":
                 self.ghost_girl()
-            case "bunkerspider":
+            case "Bunker spider":
                 self.bunker_spider()
+            case "Coil head":
+                self.coil_head()
 
 # pygame setup
 pygame.init()
@@ -299,6 +163,7 @@ back_button = Button(pygame.Rect(10, 5, 185, 40), "Back")
 jester = Button(pygame.Rect(10, 55, 185, 50), "Jester")
 ghostgirl = Button(pygame.Rect(205, 55, 185, 50), "Ghost girl")
 bunkerspider = Button(pygame.Rect(10, 115, 185, 50), "Bunker spider")
+coilhead = Button(pygame.Rect(205, 115, 185, 50), "Coil head")
 # Boutons sons
 # Jester
 jester_music = Button(pygame.Rect(10, 55, 185, 50), "Jester music", f"{current_folder}jester_sounds\music.mp3")
@@ -324,6 +189,14 @@ bunkerspider_breakweb = Button(pygame.Rect(10, 55, 185, 50), "Spider breakweb", 
 bunkerspider_spiderattack = Button(pygame.Rect(205, 55, 185, 50), "Spider attack", f"{current_folder}bunkerspider_sounds\spiderattack.mp3")
 bunkerspider_spiderdie = Button(pygame.Rect(10, 115, 185, 50), "Spider die", f"{current_folder}bunkerspider_sounds\spiderdie.mp3")
 bunkerspider_spiderhit = Button(pygame.Rect(205, 115, 185, 50), "Spider hit", f"{current_folder}bunkerspider_sounds\spiderhit.mp3")
+# Coil head
+coilhead_footstep = Button(pygame.Rect(10, 55, 185, 50), "Coil head footstep", f"{current_folder}coilhead_sounds\\footstep.mp3")
+coilhead_kill = Button(pygame.Rect(205, 55, 185, 50), "Coil head kill", f"{current_folder}coilhead_sounds\\kill.mp3")
+coilhead_spring1 = Button(pygame.Rect(10, 115, 185, 50), "Coil head spring 1", f"{current_folder}coilhead_sounds\spring1.mp3")
+coilhead_spring2 = Button(pygame.Rect(205, 115, 185, 50), "Coil head spring 2", f"{current_folder}coilhead_sounds\spring2.mp3")
+coilhead_spring3 = Button(pygame.Rect(10, 175, 185, 50), "Coil head spring 3", f"{current_folder}coilhead_sounds\spring3.mp3")
+coilhead_springwobble1 = Button(pygame.Rect(205, 175, 185, 50), "Coil head wobble 1", f"{current_folder}coilhead_sounds\springwobble1.mp3")
+coilhead_springwobble2 = Button(pygame.Rect(10, 235, 185, 50), "Coil head wobble 2", f"{current_folder}coilhead_sounds\\springwobble2.mp3")
 
 if __name__ == "__main__":
     while running:

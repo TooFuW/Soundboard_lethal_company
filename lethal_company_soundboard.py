@@ -11,137 +11,170 @@ def action_click(button):
         case "Ghost girl":
             game_state.previous_state = game_state.state
             game_state.state = "ghostgirl"
+        case "Bunker spider":
+            game_state.previous_state = game_state.state
+            game_state.state = "bunkerspider"
         case "Jester music":
             try:
                 son_actuel.stop()
             except:
                 pass
             play_sound = True
-            son_actuel = jester_music_sound
+            son_actuel = button.son
         case "Jester stomp 1":
             try:
                 son_actuel.stop()
             except:
                 pass
             play_sound = True
-            son_actuel = jester_stomp1_sound
+            son_actuel = button.son
         case "Jester stomp 2":
             try:
                 son_actuel.stop()
             except:
                 pass
             play_sound = True
-            son_actuel = jester_stomp2_sound
+            son_actuel = button.son
         case "Jester stomp 3":
             try:
                 son_actuel.stop()
             except:
                 pass
             play_sound = True
-            son_actuel = jester_stomp3_sound
+            son_actuel = button.son
         case "Jester turncranck 1":
             try:
                 son_actuel.stop()
             except:
                 pass
             play_sound = True
-            son_actuel = jester_turncranck1_sound
+            son_actuel = button.son
         case "Jester turncranck 2":
             try:
                 son_actuel.stop()
             except:
                 pass
             play_sound = True
-            son_actuel = jester_turncranck2_sound
+            son_actuel = button.son
         case "Jester turncranck 3":
             try:
                 son_actuel.stop()
             except:
                 pass
             play_sound = True
-            son_actuel = jester_turncranck3_sound
+            son_actuel = button.son
         case "Jester pop":
             try:
                 son_actuel.stop()
             except:
                 pass
             play_sound = True
-            son_actuel = jester_pop_sound
+            son_actuel = button.son
         case "Ghost girl breathe 1":
             try:
                 son_actuel.stop()
             except:
                 pass
             play_sound = True
-            son_actuel = ghostgirl_breathe1_sound
+            son_actuel = button.son
         case "Ghost girl breathe 2":
             try:
                 son_actuel.stop()
             except:
                 pass
             play_sound = True
-            son_actuel = ghostgirl_breathe2_sound
+            son_actuel = button.son
         case "Ghost girl laugh":
             try:
                 son_actuel.stop()
             except:
                 pass
             play_sound = True
-            son_actuel = ghostgirl_laugh_sound
+            son_actuel = button.son
         case "Ghost girl laugh":
             try:
                 son_actuel.stop()
             except:
                 pass
             play_sound = True
-            son_actuel = ghostgirl_laugh_sound
+            son_actuel = button.son
         case "Ghost girl skipwalk 1":
             try:
                 son_actuel.stop()
             except:
                 pass
             play_sound = True
-            son_actuel = ghostgirl_skipwalk1_sound
+            son_actuel = button.son
         case "Ghost girl skipwalk 2":
             try:
                 son_actuel.stop()
             except:
                 pass
             play_sound = True
-            son_actuel = ghostgirl_skipwalk2_sound
+            son_actuel = button.son
         case "Ghost girl skipwalk 3":
             try:
                 son_actuel.stop()
             except:
                 pass
             play_sound = True
-            son_actuel = ghostgirl_skipwalk3_sound
+            son_actuel = button.son
         case "Ghost girl voicecry 1":
             try:
                 son_actuel.stop()
             except:
                 pass
             play_sound = True
-            son_actuel = ghostgirl_voicecry1_sound
+            son_actuel = button.son
         case "Ghost girl voicecry 2":
             try:
                 son_actuel.stop()
             except:
                 pass
             play_sound = True
-            son_actuel = ghostgirl_voicecry2_sound
+            son_actuel = button.son
         case "Ghost girl voicehey":
             try:
                 son_actuel.stop()
             except:
                 pass
             play_sound = True
-            son_actuel = ghostgirl_voicehey_sound
+            son_actuel = button.son
+        case "Spider breakweb":
+            try:
+                son_actuel.stop()
+            except:
+                pass
+            play_sound = True
+            son_actuel = button.son
+        case "Spider attack":
+            try:
+                son_actuel.stop()
+            except:
+                pass
+            play_sound = True
+            son_actuel = button.son
+        case "Spider die":
+            try:
+                son_actuel.stop()
+            except:
+                pass
+            play_sound = True
+            son_actuel = button.son
+        case "Spider hit":
+            try:
+                son_actuel.stop()
+            except:
+                pass
+            play_sound = True
+            son_actuel = button.son
 
 class Button:
 
-    def __init__(self, rect : pygame.Rect, text : str):
-        self.rect = rect
+    def __init__(self, rect : tuple, text : str, son : str = None):
+        self.rect = pygame.Rect(rect)
+        if son != None:
+            self.son = pygame.mixer.Sound(son)
         self.text = text
         gui_font = pygame.font.SysFont("Roboto", 25)
         self.text_surf = gui_font.render(text, True, (255, 255, 255))
@@ -183,6 +216,7 @@ class Hud_state:
 
         jester.draw()
         ghostgirl.draw()
+        bunkerspider.draw()
 
         pygame.display.flip()
 
@@ -219,6 +253,18 @@ class Hud_state:
         
         pygame.display.flip()
 
+    def bunker_spider(self):
+        screen.blit(background, (0, 0))
+        pygame.draw.rect(screen, (0, 0, 0), nav_bar)
+        back_button.draw()
+
+        bunkerspider_breakweb.draw()
+        bunkerspider_spiderattack.draw()
+        bunkerspider_spiderdie.draw()
+        bunkerspider_spiderhit.draw()
+        
+        pygame.display.flip()
+
     def state_manager(self):
         """state_manager se charge d'afficher la bonne interface en fonction de l'état de self.state
         """
@@ -229,6 +275,8 @@ class Hud_state:
                 self.jester()
             case "ghostgirl":
                 self.ghost_girl()
+            case "bunkerspider":
+                self.bunker_spider()
 
 # pygame setup
 pygame.init()
@@ -246,51 +294,36 @@ current_folder = __file__[:-28]
 background = pygame.image.load(f"{current_folder}lethal-company_35w1.jpg")
 background = pygame.transform.scale(background, (screen.get_width(), screen.get_height()))
 
-# Chargement des sons
-# Jester
-jester_music_sound = pygame.mixer.Sound(f"{current_folder}jester_sounds\music.mp3")
-jester_stomp1_sound = pygame.mixer.Sound(f"{current_folder}jester_sounds\stomp1.mp3")
-jester_stomp2_sound = pygame.mixer.Sound(f"{current_folder}jester_sounds\stomp2.mp3")
-jester_stomp3_sound = pygame.mixer.Sound(f"{current_folder}jester_sounds\stomp3.mp3")
-jester_turncranck1_sound = pygame.mixer.Sound(f"{current_folder}jester_sounds\\turncranck1.mp3")
-jester_turncranck2_sound = pygame.mixer.Sound(f"{current_folder}jester_sounds\\turncranck2.mp3")
-jester_turncranck3_sound = pygame.mixer.Sound(f"{current_folder}jester_sounds\\turncranck3.mp3")
-jester_pop_sound = pygame.mixer.Sound(f"{current_folder}jester_sounds\pop.mp3")
-# Ghost girl
-ghostgirl_breathe1_sound = pygame.mixer.Sound(f"{current_folder}ghostgirl_sounds\\breathe1.mp3")
-ghostgirl_breathe2_sound = pygame.mixer.Sound(f"{current_folder}ghostgirl_sounds\\breathe2.mp3")
-ghostgirl_laugh_sound = pygame.mixer.Sound(f"{current_folder}ghostgirl_sounds\laugh.mp3")
-ghostgirl_skipwalk1_sound = pygame.mixer.Sound(f"{current_folder}ghostgirl_sounds\skipwalk1.mp3")
-ghostgirl_skipwalk2_sound = pygame.mixer.Sound(f"{current_folder}ghostgirl_sounds\skipwalk2.mp3")
-ghostgirl_skipwalk3_sound = pygame.mixer.Sound(f"{current_folder}ghostgirl_sounds\skipwalk3.mp3")
-ghostgirl_voicecry1_sound = pygame.mixer.Sound(f"{current_folder}ghostgirl_sounds\\voicecry1.mp3")
-ghostgirl_voicecry2_sound = pygame.mixer.Sound(f"{current_folder}ghostgirl_sounds\\voicecry2.mp3")
-ghostgirl_voicehey_sound = pygame.mixer.Sound(f"{current_folder}ghostgirl_sounds\\voicehey.mp3")
-
 # Boutons catégories
 back_button = Button(pygame.Rect(10, 5, 185, 40), "Back")
 jester = Button(pygame.Rect(10, 55, 185, 50), "Jester")
 ghostgirl = Button(pygame.Rect(205, 55, 185, 50), "Ghost girl")
+bunkerspider = Button(pygame.Rect(10, 115, 185, 50), "Bunker spider")
 # Boutons sons
 # Jester
-jester_music = Button(pygame.Rect(10, 55, 185, 50), "Jester music")
-jester_stomp1 = Button(pygame.Rect(205, 55, 185, 50), "Jester stomp 1")
-jester_stomp2 = Button(pygame.Rect(10, 115, 185, 50), "Jester stomp 2")
-jester_stomp3 = Button(pygame.Rect(205, 115, 185, 50), "Jester stomp 3")
-jester_turncranck1 = Button(pygame.Rect(10, 175, 185, 50), "Jester turncranck 1")
-jester_turncranck2 = Button(pygame.Rect(205, 175, 185, 50), "Jester turncranck 2")
-jester_turncranck3 = Button(pygame.Rect(10, 235, 185, 50), "Jester turncranck 3")
-jester_pop = Button(pygame.Rect(205, 235, 185, 50), "Jester pop")
+jester_music = Button(pygame.Rect(10, 55, 185, 50), "Jester music", f"{current_folder}jester_sounds\music.mp3")
+jester_stomp1 = Button(pygame.Rect(205, 55, 185, 50), "Jester stomp 1", f"{current_folder}jester_sounds\stomp1.mp3")
+jester_stomp2 = Button(pygame.Rect(10, 115, 185, 50), "Jester stomp 2", f"{current_folder}jester_sounds\stomp2.mp3")
+jester_stomp3 = Button(pygame.Rect(205, 115, 185, 50), "Jester stomp 3", f"{current_folder}jester_sounds\stomp3.mp3")
+jester_turncranck1 = Button(pygame.Rect(10, 175, 185, 50), "Jester turncranck 1", f"{current_folder}jester_sounds\\turncranck1.mp3")
+jester_turncranck2 = Button(pygame.Rect(205, 175, 185, 50), "Jester turncranck 2", f"{current_folder}jester_sounds\\turncranck2.mp3")
+jester_turncranck3 = Button(pygame.Rect(10, 235, 185, 50), "Jester turncranck 3", f"{current_folder}jester_sounds\\turncranck3.mp3")
+jester_pop = Button(pygame.Rect(205, 235, 185, 50), "Jester pop", f"{current_folder}jester_sounds\pop.mp3")
 # Ghost girl
-ghostgirl_breathe1 = Button(pygame.Rect(10, 55, 185, 50), "Ghost girl breathe 1")
-ghostgirl_breathe2 = Button(pygame.Rect(205, 55, 185, 50), "Ghost girl breathe 2")
-ghostgirl_laugh = Button(pygame.Rect(10, 115, 185, 50), "Ghost girl laugh")
-ghostgirl_skipwalk1 = Button(pygame.Rect(205, 115, 185, 50), "Ghost girl skipwalk 1")
-ghostgirl_skipwalk2 = Button(pygame.Rect(10, 175, 185, 50), "Ghost girl skipwalk 2")
-ghostgirl_skipwalk3 = Button(pygame.Rect(205, 175, 185, 50), "Ghost girl skipwalk 3")
-ghostgirl_voicecry1 = Button(pygame.Rect(10, 235, 185, 50), "Ghost girl voicecry 1")
-ghostgirl_voicecry2 = Button(pygame.Rect(205, 235, 185, 50), "Ghost girl voicecry 2")
-ghostgirl_voicehey = Button(pygame.Rect(10, 295, 185, 50), "Ghost girl voicehey")
+ghostgirl_breathe1 = Button(pygame.Rect(10, 55, 185, 50), "Ghost girl breathe 1", f"{current_folder}ghostgirl_sounds\\breathe1.mp3")
+ghostgirl_breathe2 = Button(pygame.Rect(205, 55, 185, 50), "Ghost girl breathe 2", f"{current_folder}ghostgirl_sounds\\breathe2.mp3")
+ghostgirl_laugh = Button(pygame.Rect(10, 115, 185, 50), "Ghost girl laugh", f"{current_folder}ghostgirl_sounds\laugh.mp3")
+ghostgirl_skipwalk1 = Button(pygame.Rect(205, 115, 185, 50), "Ghost girl skipwalk 1", f"{current_folder}ghostgirl_sounds\skipwalk1.mp3")
+ghostgirl_skipwalk2 = Button(pygame.Rect(10, 175, 185, 50), "Ghost girl skipwalk 2", f"{current_folder}ghostgirl_sounds\skipwalk2.mp3")
+ghostgirl_skipwalk3 = Button(pygame.Rect(205, 175, 185, 50), "Ghost girl skipwalk 3", f"{current_folder}ghostgirl_sounds\skipwalk3.mp3")
+ghostgirl_voicecry1 = Button(pygame.Rect(10, 235, 185, 50), "Ghost girl voicecry 1", f"{current_folder}ghostgirl_sounds\\voicecry1.mp3")
+ghostgirl_voicecry2 = Button(pygame.Rect(205, 235, 185, 50), "Ghost girl voicecry 2", f"{current_folder}ghostgirl_sounds\\voicecry2.mp3")
+ghostgirl_voicehey = Button(pygame.Rect(10, 295, 185, 50), "Ghost girl voicehey", f"{current_folder}ghostgirl_sounds\\voicehey.mp3")
+# Bunker spider
+bunkerspider_breakweb = Button(pygame.Rect(10, 55, 185, 50), "Spider breakweb", f"{current_folder}bunkerspider_sounds\\breakweb.mp3")
+bunkerspider_spiderattack = Button(pygame.Rect(205, 55, 185, 50), "Spider attack", f"{current_folder}bunkerspider_sounds\spiderattack.mp3")
+bunkerspider_spiderdie = Button(pygame.Rect(10, 115, 185, 50), "Spider die", f"{current_folder}bunkerspider_sounds\spiderdie.mp3")
+bunkerspider_spiderhit = Button(pygame.Rect(205, 115, 185, 50), "Spider hit", f"{current_folder}bunkerspider_sounds\spiderhit.mp3")
 
 if __name__ == "__main__":
     while running:

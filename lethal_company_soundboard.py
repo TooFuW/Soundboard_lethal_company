@@ -1,5 +1,4 @@
 import pygame
-from icecream import ic
 
 class Button:
 

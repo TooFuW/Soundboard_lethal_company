@@ -65,6 +65,7 @@ class Hud_state:
         bunkerspider.draw()
         coilhead.draw()
         thumper.draw()
+        eyelessdog.draw()
 
         pygame.display.flip()
 
@@ -145,6 +146,19 @@ class Hud_state:
         thumper_stuncrawler.draw()
         
         pygame.display.flip()
+        
+    def eyeless_dog(self):
+        screen.blit(background, (0, 0))
+        pygame.draw.rect(screen, (0, 0, 0), nav_bar)
+        back_button.draw()
+
+        eyelessdog_killplayer.draw()
+        eyelessdog_roar.draw()
+        eyelessdog_stompdouble1.draw()
+        eyelessdog_stompdouble2.draw()
+        eyelessdog_stundog.draw()
+        
+        pygame.display.flip()
 
     def state_manager(self):
         """state_manager se charge d'afficher la bonne interface en fonction de l'état de self.state
@@ -162,6 +176,8 @@ class Hud_state:
                 self.coil_head()
             case "Thumper":
                 self.thumper()
+            case "Eyeless dog":
+                self.eyeless_dog()
 
 # pygame setup
 pygame.init()
@@ -186,6 +202,7 @@ ghostgirl = Button(pygame.Rect(205, 55, 185, 50), "Ghost girl")
 bunkerspider = Button(pygame.Rect(10, 115, 185, 50), "Bunker spider")
 coilhead = Button(pygame.Rect(205, 115, 185, 50), "Coil head")
 thumper = Button(pygame.Rect(10, 175, 185, 50), "Thumper")
+eyelessdog = Button(pygame.Rect(205, 175, 185, 50), "Eyeless dog")
 # Boutons sons
 # Jester
 jester_music = Button(pygame.Rect(10, 55, 185, 50), "Jester music", f"{current_folder}jester_sounds\music.mp3")
@@ -219,7 +236,7 @@ coilhead_spring2 = Button(pygame.Rect(205, 115, 185, 50), "Coil head spring 2", 
 coilhead_spring3 = Button(pygame.Rect(10, 175, 185, 50), "Coil head spring 3", f"{current_folder}coilhead_sounds\spring3.mp3")
 coilhead_springwobble1 = Button(pygame.Rect(205, 175, 185, 50), "Coil head wobble 1", f"{current_folder}coilhead_sounds\springwobble1.mp3")
 coilhead_springwobble2 = Button(pygame.Rect(10, 235, 185, 50), "Coil head wobble 2", f"{current_folder}coilhead_sounds\springwobble2.mp3")
-#Thumper
+# Thumper
 thumper_biteplayer = Button(pygame.Rect(10, 55, 185, 50), "Thumper bite player", f"{current_folder}thumper_sounds\\biteplayer.mp3")
 thumper_crawlerdie = Button(pygame.Rect(205, 55, 185, 50), "Thumper crawler die", f"{current_folder}thumper_sounds\crawlerdie.mp3")
 thumper_hitcrawler = Button(pygame.Rect(10, 115, 185, 50), "Thumper hit crawler", f"{current_folder}thumper_sounds\hitcrawler.mp3")
@@ -230,6 +247,12 @@ thumper_shortroar = Button(pygame.Rect(10, 235, 185, 50), "Thumper short roar", 
 thumper_stomp1 = Button(pygame.Rect(205, 235, 185, 50), "Thumper stomp 1", f"{current_folder}thumper_sounds\stomp1.mp3")
 thumper_stomp2 = Button(pygame.Rect(10, 295, 185, 50), "Thumper stomp 2", f"{current_folder}thumper_sounds\stomp2.mp3")
 thumper_stuncrawler = Button(pygame.Rect(205, 295, 185, 50), "Thumper stun crawler", f"{current_folder}thumper_sounds\stuncrawler.mp3")
+# Eyeless dog
+eyelessdog_killplayer = Button(pygame.Rect(10, 55, 185, 50), "Eyeless dog kill player", f"{current_folder}eyelessdog_sounds\killplayer.mp3")
+eyelessdog_roar = Button(pygame.Rect(205, 55, 185, 50), "Eyeless dog roar", f"{current_folder}eyelessdog_sounds\\roar.mp3")
+eyelessdog_stompdouble1 = Button(pygame.Rect(10, 115, 185, 50), "Eyeless dog double stomp 1", f"{current_folder}eyelessdog_sounds\stompdouble1.mp3")
+eyelessdog_stompdouble2 = Button(pygame.Rect(205, 115, 185, 50), "Eyeless dog double stomp 2", f"{current_folder}eyelessdog_sounds\stompdouble2.mp3")
+eyelessdog_stundog = Button(pygame.Rect(205, 115, 185, 50), "Eyeless dog stundog", f"{current_folder}eyelessdog_sounds\stundog.mp3")
 
 if __name__ == "__main__":
     while running:

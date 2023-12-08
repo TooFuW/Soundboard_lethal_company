@@ -76,6 +76,7 @@ class Hud_state:
         landmine.draw()
         bracken.draw()
         forestkeeper.draw()
+        lootbug.draw()
 
         pygame.display.flip()
 
@@ -233,6 +234,21 @@ class Hud_state:
         forestkeeper_stun.draw()
         
         pygame.display.flip()
+        
+    def loot_bug(self):
+        screen.blit(background, (0, 0))
+        pygame.draw.rect(screen, (0, 0, 0), nav_bar)
+        back_button.draw()
+        stop_sound_button.draw()
+
+        lootbug_angryscreech1.draw()
+        lootbug_angryscreech2.draw()
+        lootbug_cry.draw()
+        lootbug_die.draw()
+        lootbug_fly.draw()
+        lootbug_walk.draw()
+        
+        pygame.display.flip()
 
     def state_manager(self):
         """state_manager se charge d'afficher la bonne interface en fonction de l'état de self.state
@@ -260,6 +276,8 @@ class Hud_state:
                 self.bracken()
             case "Forest keeper":
                 self.forest_keeper()
+            case "Loot bug":
+                self.loot_bug()
 
 # pygame setup
 pygame.init()
@@ -290,6 +308,7 @@ turret= Button(pygame.Rect(10, 235, 185, 50), "Turret")
 landmine = Button(pygame.Rect(205, 235, 185, 50), "Landmine")
 bracken = Button(pygame.Rect(10, 295, 185, 50), "Bracken")
 forestkeeper = Button(pygame.Rect(205, 295, 185, 50), "Forest keeper")
+lootbug = Button(pygame.Rect(10, 355, 185, 50), "Loot bug")
 # Boutons sons
 # Jester
 jester_music = Button(pygame.Rect(10, 55, 185, 50), "Jester music", f"{current_folder}jester_sounds\music.mp3")
@@ -366,6 +385,13 @@ forestkeeper_stomp3 = Button(pygame.Rect(205, 115, 185, 50), "Forest keeper stom
 forestkeeper_stomp4 = Button(pygame.Rect(10, 175, 185, 50), "Forest keeper stomp 4", f"{current_folder}forestkeeper_sounds\stomp4.mp3")
 forestkeeper_stomp5 = Button(pygame.Rect(205, 175, 185, 50), "Forest keeper stomp 5", f"{current_folder}forestkeeper_sounds\stomp5.mp3")
 forestkeeper_stun = Button(pygame.Rect(10, 235, 185, 50), "Forest keeper stun", f"{current_folder}forestkeeper_sounds\stun.mp3")
+# Loot bug
+lootbug_angryscreech1 = Button(pygame.Rect(10, 55, 185, 50), "Loot bug angry screech 1", f"{current_folder}lootbug_sounds\\angryscreech1.mp3")
+lootbug_angryscreech2 = Button(pygame.Rect(205, 55, 185, 50), "Loot bug angry screech 2", f"{current_folder}lootbug_sounds\\angryscreech2.mp3")
+lootbug_cry = Button(pygame.Rect(10, 115, 185, 50), "Loot bug cry", f"{current_folder}lootbug_sounds\cry.mp3")
+lootbug_die = Button(pygame.Rect(205, 115, 185, 50), "Loot bug die", f"{current_folder}lootbug_sounds\die.mp3")
+lootbug_fly = Button(pygame.Rect(10, 175, 185, 50), "Loot bug fly", f"{current_folder}lootbug_sounds\\fly.mp3")
+lootbug_walk = Button(pygame.Rect(205, 175, 185, 50), "Loot bug walk", f"{current_folder}lootbug_sounds\walk.mp3")
 
 if __name__ == "__main__":
     while running:

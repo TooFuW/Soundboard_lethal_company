@@ -66,6 +66,7 @@ class Hud_state:
         coilhead.draw()
         thumper.draw()
         eyelessdog.draw()
+        turret.draw()
 
         pygame.display.flip()
 
@@ -159,6 +160,21 @@ class Hud_state:
         eyelessdog_stundog.draw()
         
         pygame.display.flip()
+        
+    def turret(self):
+        screen.blit(background, (0, 0))
+        pygame.draw.rect(screen, (0, 0, 0), nav_bar)
+        back_button.draw()
+
+        turret_activate.draw()
+        turret_bersekmode.draw()
+        turret_desactivate.draw()
+        turret_fire.draw()
+        turret_firedistance.draw()
+        turret_seeplayer.draw()
+        turret_wallhits.draw()
+        
+        pygame.display.flip()
 
     def state_manager(self):
         """state_manager se charge d'afficher la bonne interface en fonction de l'état de self.state
@@ -178,6 +194,8 @@ class Hud_state:
                 self.thumper()
             case "Eyeless dog":
                 self.eyeless_dog()
+            case "Turret":
+                self.turret()
 
 # pygame setup
 pygame.init()
@@ -203,6 +221,7 @@ bunkerspider = Button(pygame.Rect(10, 115, 185, 50), "Bunker spider")
 coilhead = Button(pygame.Rect(205, 115, 185, 50), "Coil head")
 thumper = Button(pygame.Rect(10, 175, 185, 50), "Thumper")
 eyelessdog = Button(pygame.Rect(205, 175, 185, 50), "Eyeless dog")
+turret= Button(pygame.Rect(10, 235, 185, 50), "Turret")
 # Boutons sons
 # Jester
 jester_music = Button(pygame.Rect(10, 55, 185, 50), "Jester music", f"{current_folder}jester_sounds\music.mp3")
@@ -253,6 +272,14 @@ eyelessdog_roar = Button(pygame.Rect(205, 55, 185, 50), "Eyeless dog roar", f"{c
 eyelessdog_stompdouble1 = Button(pygame.Rect(10, 115, 185, 50), "Eyeless dog double stomp 1", f"{current_folder}eyelessdog_sounds\stompdouble1.mp3")
 eyelessdog_stompdouble2 = Button(pygame.Rect(205, 115, 185, 50), "Eyeless dog double stomp 2", f"{current_folder}eyelessdog_sounds\stompdouble2.mp3")
 eyelessdog_stundog = Button(pygame.Rect(205, 115, 185, 50), "Eyeless dog stundog", f"{current_folder}eyelessdog_sounds\stundog.mp3")
+# Turret
+turret_activate = Button(pygame.Rect(10, 55, 185, 50), "Turret activate", f"{current_folder}turret_sounds\\activate.mp3")
+turret_bersekmode = Button(pygame.Rect(205, 55, 185, 50), "Turret bersek Mode", f"{current_folder}turret_sounds\\bersekmode.mp3")
+turret_desactivate = Button(pygame.Rect(10, 115, 185, 50), "Turret desactivate", f"{current_folder}turret_sounds\desactivate.mp3")
+turret_fire = Button(pygame.Rect(205, 115, 185, 50), "Turret fire", f"{current_folder}turret_sounds\\fire.mp3")
+turret_firedistance = Button(pygame.Rect(10, 175, 185, 50), "Turret fire distance", f"{current_folder}turret_sounds\\firedistance.mp3")
+turret_seeplayer = Button(pygame.Rect(205, 175, 185, 50), "Turret see player", f"{current_folder}turret_sounds\seeplayer.mp3")
+turret_wallhits = Button(pygame.Rect(10, 235, 185, 50), "Turret wall hits", f"{current_folder}turret_sounds\wallhits.mp3")
 
 if __name__ == "__main__":
     while running:

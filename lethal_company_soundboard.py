@@ -41,6 +41,11 @@ class Button:
                     else:
                         if self.text == "Back":
                             game_state.state = game_state.previous_state
+                        elif self.text == "Stop sound":
+                            try:
+                                son_actuel.stop()
+                            except:
+                                pass
                         else:
                             game_state.previous_state = game_state.state
                             game_state.state = self.text
@@ -59,6 +64,7 @@ class Hud_state:
     def accueil(self):
         screen.blit(background, (0, 0))
         pygame.draw.rect(screen, (0, 0, 0), nav_bar)
+        stop_sound_button.draw()
 
         jester.draw()
         ghostgirl.draw()
@@ -67,6 +73,7 @@ class Hud_state:
         thumper.draw()
         eyelessdog.draw()
         turret.draw()
+        landmine.draw()
 
         pygame.display.flip()
 
@@ -74,6 +81,7 @@ class Hud_state:
         screen.blit(background, (0, 0))
         pygame.draw.rect(screen, (0, 0, 0), nav_bar)
         back_button.draw()
+        stop_sound_button.draw()
 
         jester_music.draw()
         jester_stomp1.draw()
@@ -90,6 +98,7 @@ class Hud_state:
         screen.blit(background, (0, 0))
         pygame.draw.rect(screen, (0, 0, 0), nav_bar)
         back_button.draw()
+        stop_sound_button.draw()
 
         ghostgirl_breathe1.draw()
         ghostgirl_breathe2.draw()
@@ -107,6 +116,7 @@ class Hud_state:
         screen.blit(background, (0, 0))
         pygame.draw.rect(screen, (0, 0, 0), nav_bar)
         back_button.draw()
+        stop_sound_button.draw()
 
         bunkerspider_breakweb.draw()
         bunkerspider_spiderattack.draw()
@@ -119,6 +129,7 @@ class Hud_state:
         screen.blit(background, (0, 0))
         pygame.draw.rect(screen, (0, 0, 0), nav_bar)
         back_button.draw()
+        stop_sound_button.draw()
 
         coilhead_footstep.draw()
         coilhead_kill.draw()
@@ -134,6 +145,7 @@ class Hud_state:
         screen.blit(background, (0, 0))
         pygame.draw.rect(screen, (0, 0, 0), nav_bar)
         back_button.draw()
+        stop_sound_button.draw()
 
         thumper_biteplayer.draw()
         thumper_crawlerdie.draw()
@@ -152,6 +164,7 @@ class Hud_state:
         screen.blit(background, (0, 0))
         pygame.draw.rect(screen, (0, 0, 0), nav_bar)
         back_button.draw()
+        stop_sound_button.draw()
 
         eyelessdog_killplayer.draw()
         eyelessdog_roar.draw()
@@ -165,6 +178,7 @@ class Hud_state:
         screen.blit(background, (0, 0))
         pygame.draw.rect(screen, (0, 0, 0), nav_bar)
         back_button.draw()
+        stop_sound_button.draw()
 
         turret_activate.draw()
         turret_bersekmode.draw()
@@ -173,6 +187,20 @@ class Hud_state:
         turret_firedistance.draw()
         turret_seeplayer.draw()
         turret_wallhits.draw()
+        
+        pygame.display.flip()
+        
+    def landmine(self):
+        screen.blit(background, (0, 0))
+        pygame.draw.rect(screen, (0, 0, 0), nav_bar)
+        back_button.draw()
+        stop_sound_button.draw()
+
+        landime_beep.draw()
+        landmine_detonate.draw()
+        landmine_detonatedistance.draw()
+        landmine_press.draw()
+        landmine_trigger.draw()
         
         pygame.display.flip()
 
@@ -196,6 +224,8 @@ class Hud_state:
                 self.eyeless_dog()
             case "Turret":
                 self.turret()
+            case "Landmine":
+                self.landmine()
 
 # pygame setup
 pygame.init()
@@ -214,7 +244,8 @@ background = pygame.image.load(f"{current_folder}lethal-company_35w1.jpg")
 background = pygame.transform.scale(background, (screen.get_width(), screen.get_height()))
 
 # Boutons catégories
-back_button = Button(pygame.Rect(10, 5, 185, 40), "Back")
+stop_sound_button = Button(pygame.Rect(10, 5, 185, 40), "Stop sound")
+back_button = Button(pygame.Rect(205, 5, 185, 40), "Back")
 jester = Button(pygame.Rect(10, 55, 185, 50), "Jester")
 ghostgirl = Button(pygame.Rect(205, 55, 185, 50), "Ghost girl")
 bunkerspider = Button(pygame.Rect(10, 115, 185, 50), "Bunker spider")
@@ -222,6 +253,7 @@ coilhead = Button(pygame.Rect(205, 115, 185, 50), "Coil head")
 thumper = Button(pygame.Rect(10, 175, 185, 50), "Thumper")
 eyelessdog = Button(pygame.Rect(205, 175, 185, 50), "Eyeless dog")
 turret= Button(pygame.Rect(10, 235, 185, 50), "Turret")
+landmine = Button(pygame.Rect(205, 235, 185, 50), "Landmine")
 # Boutons sons
 # Jester
 jester_music = Button(pygame.Rect(10, 55, 185, 50), "Jester music", f"{current_folder}jester_sounds\music.mp3")
@@ -280,6 +312,12 @@ turret_fire = Button(pygame.Rect(205, 115, 185, 50), "Turret fire", f"{current_f
 turret_firedistance = Button(pygame.Rect(10, 175, 185, 50), "Turret fire distance", f"{current_folder}turret_sounds\\firedistance.mp3")
 turret_seeplayer = Button(pygame.Rect(205, 175, 185, 50), "Turret see player", f"{current_folder}turret_sounds\seeplayer.mp3")
 turret_wallhits = Button(pygame.Rect(10, 235, 185, 50), "Turret wall hits", f"{current_folder}turret_sounds\wallhits.mp3")
+# Landmine
+landime_beep = Button(pygame.Rect(10, 55, 185, 50), "Landmine beep", f"{current_folder}landmine_sounds\\beep.mp3")
+landmine_detonate = Button(pygame.Rect(205, 55, 185, 50), "Landmine detonate", f"{current_folder}landmine_sounds\detonate.mp3")
+landmine_detonatedistance = Button(pygame.Rect(10, 115, 185, 50), "Landmine detonate distance", f"{current_folder}landmine_sounds\detonatedistance.mp3")
+landmine_press = Button(pygame.Rect(205, 115, 185, 50), "Landmine press", f"{current_folder}landmine_sounds\press.mp3")
+landmine_trigger = Button(pygame.Rect(205, 115, 185, 50), "Landmine trigger", f"{current_folder}landmine_sounds\\trigger.mp3")
 
 if __name__ == "__main__":
     while running:

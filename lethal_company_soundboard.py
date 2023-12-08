@@ -75,6 +75,7 @@ class Hud_state:
         turret.draw()
         landmine.draw()
         bracken.draw()
+        forestkeeper.draw()
 
         pygame.display.flip()
 
@@ -216,6 +217,22 @@ class Hud_state:
         bracken_stun.draw()
         
         pygame.display.flip()
+        
+    def forest_keeper(self):
+        screen.blit(background, (0, 0))
+        pygame.draw.rect(screen, (0, 0, 0), nav_bar)
+        back_button.draw()
+        stop_sound_button.draw()
+
+        forestkeeper_eatplayer.draw()
+        forestkeeper_stomp1.draw()
+        forestkeeper_stomp2.draw()
+        forestkeeper_stomp3.draw()
+        forestkeeper_stomp4.draw()
+        forestkeeper_stomp5.draw()
+        forestkeeper_stun.draw()
+        
+        pygame.display.flip()
 
     def state_manager(self):
         """state_manager se charge d'afficher la bonne interface en fonction de l'état de self.state
@@ -241,6 +258,8 @@ class Hud_state:
                 self.landmine()
             case "Bracken":
                 self.bracken()
+            case "Forest keeper":
+                self.forest_keeper()
 
 # pygame setup
 pygame.init()
@@ -270,6 +289,7 @@ eyelessdog = Button(pygame.Rect(205, 175, 185, 50), "Eyeless dog")
 turret= Button(pygame.Rect(10, 235, 185, 50), "Turret")
 landmine = Button(pygame.Rect(205, 235, 185, 50), "Landmine")
 bracken = Button(pygame.Rect(10, 295, 185, 50), "Bracken")
+forestkeeper = Button(pygame.Rect(205, 295, 185, 50), "Forest keeper")
 # Boutons sons
 # Jester
 jester_music = Button(pygame.Rect(10, 55, 185, 50), "Jester music", f"{current_folder}jester_sounds\music.mp3")
@@ -333,11 +353,19 @@ landime_beep = Button(pygame.Rect(10, 55, 185, 50), "Landmine beep", f"{current_
 landmine_detonate = Button(pygame.Rect(205, 55, 185, 50), "Landmine detonate", f"{current_folder}landmine_sounds\detonate.mp3")
 landmine_detonatedistance = Button(pygame.Rect(10, 115, 185, 50), "Landmine detonate distance", f"{current_folder}landmine_sounds\detonatedistance.mp3")
 landmine_press = Button(pygame.Rect(205, 115, 185, 50), "Landmine press", f"{current_folder}landmine_sounds\press.mp3")
-landmine_trigger = Button(pygame.Rect(205, 115, 185, 50), "Landmine trigger", f"{current_folder}landmine_sounds\\trigger.mp3")
+landmine_trigger = Button(pygame.Rect(10, 175, 185, 50), "Landmine trigger", f"{current_folder}landmine_sounds\\trigger.mp3")
 # Bracken
 bracken_angered = Button(pygame.Rect(10, 55, 185, 50), "Bracken angered", f"{current_folder}bracken_sounds\\angered.mp3")
 bracken_crackneck = Button(pygame.Rect(205, 55, 185, 50), "Bracken crackneck", f"{current_folder}bracken_sounds\crackneck.mp3")
 bracken_stun = Button(pygame.Rect(10, 115, 185, 50), "Bracken stun", f"{current_folder}bracken_sounds\stun.mp3")
+# Forest keeper
+forestkeeper_eatplayer = Button(pygame.Rect(10, 55, 185, 50), "Forest keeper eat player", f"{current_folder}forestkeeper_sounds\eatplayer.mp3")
+forestkeeper_stomp1 = Button(pygame.Rect(205, 55, 185, 50), "Forest keeper stomp 1", f"{current_folder}forestkeeper_sounds\stomp1.mp3")
+forestkeeper_stomp2 = Button(pygame.Rect(10, 115, 185, 50), "Forest keeper stomp 2", f"{current_folder}forestkeeper_sounds\stomp2.mp3")
+forestkeeper_stomp3 = Button(pygame.Rect(205, 115, 185, 50), "Forest keeper stomp 3", f"{current_folder}forestkeeper_sounds\stomp3.mp3")
+forestkeeper_stomp4 = Button(pygame.Rect(10, 175, 185, 50), "Forest keeper stomp 4", f"{current_folder}forestkeeper_sounds\stomp4.mp3")
+forestkeeper_stomp5 = Button(pygame.Rect(205, 175, 185, 50), "Forest keeper stomp 5", f"{current_folder}forestkeeper_sounds\stomp5.mp3")
+forestkeeper_stun = Button(pygame.Rect(10, 235, 185, 50), "Forest keeper stun", f"{current_folder}forestkeeper_sounds\stun.mp3")
 
 if __name__ == "__main__":
     while running:

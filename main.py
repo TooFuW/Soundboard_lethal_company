@@ -326,8 +326,8 @@ coilhead_springwobble1 = Button(pygame.Rect(10, 355, 380, 50), "Coil head wobble
 coilhead_springwobble2 = Button(pygame.Rect(10, 415, 380, 50), "Coil head wobble 2", f"{current_folder}coilhead_sounds\springwobble2.mp3")
 # Thumper
 thumper_biteplayer = Button(pygame.Rect(10, 55, 380, 50), "Thumper bite player", f"{current_folder}thumper_sounds\\biteplayer.mp3")
-thumper_crawlerdie = Button(pygame.Rect(10, 115, 380, 50), "Thumper crawler die", f"{current_folder}thumper_sounds\crawlerdie.mp3")
-thumper_hitcrawler = Button(pygame.Rect(10, 175, 380, 50), "Thumper hit crawler", f"{current_folder}thumper_sounds\hitcrawler.mp3")
+thumper_crawlerdie = Button(pygame.Rect(10, 115, 380, 50), "Thumper die", f"{current_folder}thumper_sounds\crawlerdie.mp3")
+thumper_hitcrawler = Button(pygame.Rect(10, 175, 380, 50), "Thumper hit", f"{current_folder}thumper_sounds\hitcrawler.mp3")
 thumper_longroar = Button(pygame.Rect(10, 235, 380, 50), "Thumper long roar", f"{current_folder}thumper_sounds\longroar.mp3")
 thumper_shortroar = Button(pygame.Rect(10, 295, 380, 50), "Thumper short roar", f"{current_folder}thumper_sounds\shortroar.mp3")
 thumper_stomp = Button(pygame.Rect(10, 355, 380, 50), "Thumper stomp", f"{current_folder}thumper_sounds\stomp.mp3")

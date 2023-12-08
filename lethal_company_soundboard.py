@@ -87,12 +87,8 @@ class Hud_state:
         stop_sound_button.draw()
 
         jester_music.draw()
-        jester_stomp1.draw()
-        jester_stomp2.draw()
-        jester_stomp3.draw()
-        jester_turncranck1.draw()
-        jester_turncranck2.draw()
-        jester_turncranck3.draw()
+        jester_stomp.draw()
+        jester_turncranck.draw()
         jester_pop.draw()
 
         pygame.display.flip()
@@ -106,9 +102,8 @@ class Hud_state:
         ghostgirl_breathe1.draw()
         ghostgirl_breathe2.draw()
         ghostgirl_laugh.draw()
-        ghostgirl_skipwalk1.draw()
-        ghostgirl_skipwalk2.draw()
-        ghostgirl_skipwalk3.draw()
+        ghostgirl_longskipwalk.draw()
+        ghostgirl_shortskipwalk.draw()
         ghostgirl_voicecry1.draw()
         ghostgirl_voicecry2.draw()
         ghostgirl_voicehey.draw()
@@ -153,12 +148,9 @@ class Hud_state:
         thumper_biteplayer.draw()
         thumper_crawlerdie.draw()
         thumper_hitcrawler.draw()
-        thumper_longroar1.draw()
-        thumper_longroar2.draw()
-        thumper_longroar3.draw()
+        thumper_longroar.draw()
         thumper_shortroar.draw()
-        thumper_stomp1.draw()
-        thumper_stomp2.draw()
+        thumper_stomp.draw()
         thumper_stun.draw()
         
         pygame.display.flip()
@@ -171,8 +163,7 @@ class Hud_state:
 
         eyelessdog_killplayer.draw()
         eyelessdog_roar.draw()
-        eyelessdog_stompdouble1.draw()
-        eyelessdog_stompdouble2.draw()
+        eyelessdog_stomp.draw()
         eyelessdog_stun.draw()
         
         pygame.display.flip()
@@ -226,11 +217,7 @@ class Hud_state:
         stop_sound_button.draw()
 
         forestkeeper_eatplayer.draw()
-        forestkeeper_stomp1.draw()
-        forestkeeper_stomp2.draw()
-        forestkeeper_stomp3.draw()
-        forestkeeper_stomp4.draw()
-        forestkeeper_stomp5.draw()
+        forestkeeper_stomp.draw()
         forestkeeper_stun.draw()
         
         pygame.display.flip()
@@ -292,7 +279,7 @@ play_sound = False
 
 # Chargement des images
 current_folder = __file__[:-28]
-background = pygame.image.load(f"{current_folder}lethal-company_35w1.jpg")
+background = pygame.image.load(f"{current_folder}lethal_company.jpg")
 background = pygame.transform.scale(background, (screen.get_width(), screen.get_height()))
 
 # Boutons catégories
@@ -312,20 +299,15 @@ lootbug = Button(pygame.Rect(10, 355, 185, 50), "Loot bug")
 # Boutons sons
 # Jester
 jester_music = Button(pygame.Rect(10, 55, 185, 50), "Jester music", f"{current_folder}jester_sounds\music.mp3")
-jester_stomp1 = Button(pygame.Rect(205, 55, 185, 50), "Jester stomp 1", f"{current_folder}jester_sounds\stomp1.mp3")
-jester_stomp2 = Button(pygame.Rect(10, 115, 185, 50), "Jester stomp 2", f"{current_folder}jester_sounds\stomp2.mp3")
-jester_stomp3 = Button(pygame.Rect(205, 115, 185, 50), "Jester stomp 3", f"{current_folder}jester_sounds\stomp3.mp3")
-jester_turncranck1 = Button(pygame.Rect(10, 175, 185, 50), "Jester turncranck 1", f"{current_folder}jester_sounds\\turncranck1.mp3")
-jester_turncranck2 = Button(pygame.Rect(205, 175, 185, 50), "Jester turncranck 2", f"{current_folder}jester_sounds\\turncranck2.mp3")
-jester_turncranck3 = Button(pygame.Rect(10, 235, 185, 50), "Jester turncranck 3", f"{current_folder}jester_sounds\\turncranck3.mp3")
+jester_stomp = Button(pygame.Rect(205, 55, 185, 50), "Jester stomp", f"{current_folder}jester_sounds\stomp.mp3")
+jester_turncranck = Button(pygame.Rect(10, 175, 185, 50), "Jester turncranck", f"{current_folder}jester_sounds\\turncranck.mp3")
 jester_pop = Button(pygame.Rect(205, 235, 185, 50), "Jester pop", f"{current_folder}jester_sounds\pop.mp3")
 # Ghost girl
 ghostgirl_breathe1 = Button(pygame.Rect(10, 55, 185, 50), "Ghost girl breathe 1", f"{current_folder}ghostgirl_sounds\\breathe1.mp3")
 ghostgirl_breathe2 = Button(pygame.Rect(205, 55, 185, 50), "Ghost girl breathe 2", f"{current_folder}ghostgirl_sounds\\breathe2.mp3")
 ghostgirl_laugh = Button(pygame.Rect(10, 115, 185, 50), "Ghost girl laugh", f"{current_folder}ghostgirl_sounds\laugh.mp3")
-ghostgirl_skipwalk1 = Button(pygame.Rect(205, 115, 185, 50), "Ghost girl skipwalk 1", f"{current_folder}ghostgirl_sounds\skipwalk1.mp3")
-ghostgirl_skipwalk2 = Button(pygame.Rect(10, 175, 185, 50), "Ghost girl skipwalk 2", f"{current_folder}ghostgirl_sounds\skipwalk2.mp3")
-ghostgirl_skipwalk3 = Button(pygame.Rect(205, 175, 185, 50), "Ghost girl skipwalk 3", f"{current_folder}ghostgirl_sounds\skipwalk3.mp3")
+ghostgirl_longskipwalk = Button(pygame.Rect(205, 115, 185, 50), "Ghost girl long skipwalk", f"{current_folder}ghostgirl_sounds\longskipwalk.mp3")
+ghostgirl_shortskipwalk = Button(pygame.Rect(10, 175, 185, 50), "Ghost girl short skipwalk", f"{current_folder}ghostgirl_sounds\shortskipwalk.mp3")
 ghostgirl_voicecry1 = Button(pygame.Rect(10, 235, 185, 50), "Ghost girl voicecry 1", f"{current_folder}ghostgirl_sounds\\voicecry1.mp3")
 ghostgirl_voicecry2 = Button(pygame.Rect(205, 235, 185, 50), "Ghost girl voicecry 2", f"{current_folder}ghostgirl_sounds\\voicecry2.mp3")
 ghostgirl_voicehey = Button(pygame.Rect(10, 295, 185, 50), "Ghost girl voicehey", f"{current_folder}ghostgirl_sounds\\voicehey.mp3")
@@ -346,18 +328,14 @@ coilhead_springwobble2 = Button(pygame.Rect(10, 235, 185, 50), "Coil head wobble
 thumper_biteplayer = Button(pygame.Rect(10, 55, 185, 50), "Thumper bite player", f"{current_folder}thumper_sounds\\biteplayer.mp3")
 thumper_crawlerdie = Button(pygame.Rect(205, 55, 185, 50), "Thumper crawler die", f"{current_folder}thumper_sounds\crawlerdie.mp3")
 thumper_hitcrawler = Button(pygame.Rect(10, 115, 185, 50), "Thumper hit crawler", f"{current_folder}thumper_sounds\hitcrawler.mp3")
-thumper_longroar1 = Button(pygame.Rect(205, 115, 185, 50), "Thumper long roar 1", f"{current_folder}thumper_sounds\longroar1.mp3")
-thumper_longroar2 = Button(pygame.Rect(10, 175, 185, 50), "Thumper long roar 2", f"{current_folder}thumper_sounds\longroar2.mp3")
-thumper_longroar3 = Button(pygame.Rect(205, 175, 185, 50), "Thumper long roar 3", f"{current_folder}thumper_sounds\longroar3.mp3")
+thumper_longroar = Button(pygame.Rect(205, 115, 185, 50), "Thumper long roar", f"{current_folder}thumper_sounds\longroar.mp3")
 thumper_shortroar = Button(pygame.Rect(10, 235, 185, 50), "Thumper short roar", f"{current_folder}thumper_sounds\shortroar.mp3")
-thumper_stomp1 = Button(pygame.Rect(205, 235, 185, 50), "Thumper stomp 1", f"{current_folder}thumper_sounds\stomp1.mp3")
-thumper_stomp2 = Button(pygame.Rect(10, 295, 185, 50), "Thumper stomp 2", f"{current_folder}thumper_sounds\stomp2.mp3")
+thumper_stomp = Button(pygame.Rect(205, 235, 185, 50), "Thumper stomp", f"{current_folder}thumper_sounds\stomp.mp3")
 thumper_stun = Button(pygame.Rect(205, 295, 185, 50), "Thumper stuned", f"{current_folder}thumper_sounds\stun.mp3")
 # Eyeless dog
 eyelessdog_killplayer = Button(pygame.Rect(10, 55, 185, 50), "Eyeless dog kill player", f"{current_folder}eyelessdog_sounds\killplayer.mp3")
 eyelessdog_roar = Button(pygame.Rect(205, 55, 185, 50), "Eyeless dog roar", f"{current_folder}eyelessdog_sounds\\roar.mp3")
-eyelessdog_stompdouble1 = Button(pygame.Rect(10, 115, 185, 50), "Eyeless dog double stomp 1", f"{current_folder}eyelessdog_sounds\stompdouble1.mp3")
-eyelessdog_stompdouble2 = Button(pygame.Rect(205, 115, 185, 50), "Eyeless dog double stomp 2", f"{current_folder}eyelessdog_sounds\stompdouble2.mp3")
+eyelessdog_stomp = Button(pygame.Rect(10, 115, 185, 50), "Eyeless dog stomp", f"{current_folder}eyelessdog_sounds\stomp.mp3")
 eyelessdog_stun = Button(pygame.Rect(205, 115, 185, 50), "Eyeless dog stuned", f"{current_folder}eyelessdog_sounds\stun.mp3")
 # Turret
 turret_activate = Button(pygame.Rect(10, 55, 185, 50), "Turret activate", f"{current_folder}turret_sounds\\activate.mp3")
@@ -379,11 +357,7 @@ bracken_crackneck = Button(pygame.Rect(205, 55, 185, 50), "Bracken crackneck", f
 bracken_stun = Button(pygame.Rect(10, 115, 185, 50), "Bracken stun", f"{current_folder}bracken_sounds\stun.mp3")
 # Forest keeper
 forestkeeper_eatplayer = Button(pygame.Rect(10, 55, 185, 50), "Forest keeper eat player", f"{current_folder}forestkeeper_sounds\eatplayer.mp3")
-forestkeeper_stomp1 = Button(pygame.Rect(205, 55, 185, 50), "Forest keeper stomp 1", f"{current_folder}forestkeeper_sounds\stomp1.mp3")
-forestkeeper_stomp2 = Button(pygame.Rect(10, 115, 185, 50), "Forest keeper stomp 2", f"{current_folder}forestkeeper_sounds\stomp2.mp3")
-forestkeeper_stomp3 = Button(pygame.Rect(205, 115, 185, 50), "Forest keeper stomp 3", f"{current_folder}forestkeeper_sounds\stomp3.mp3")
-forestkeeper_stomp4 = Button(pygame.Rect(10, 175, 185, 50), "Forest keeper stomp 4", f"{current_folder}forestkeeper_sounds\stomp4.mp3")
-forestkeeper_stomp5 = Button(pygame.Rect(205, 175, 185, 50), "Forest keeper stomp 5", f"{current_folder}forestkeeper_sounds\stomp5.mp3")
+forestkeeper_stomp = Button(pygame.Rect(205, 55, 185, 50), "Forest keeper stomp", f"{current_folder}forestkeeper_sounds\stomp.mp3")
 forestkeeper_stun = Button(pygame.Rect(10, 235, 185, 50), "Forest keeper stun", f"{current_folder}forestkeeper_sounds\stun.mp3")
 # Loot bug
 lootbug_angryscreech1 = Button(pygame.Rect(10, 55, 185, 50), "Loot bug angry screech 1", f"{current_folder}lootbug_sounds\\angryscreech1.mp3")

@@ -78,6 +78,7 @@ class Hud_state:
         forestkeeper.draw()
         lootbug.draw()
         nutcracker.draw()
+        mask.draw()
 
         pygame.display.flip()
 
@@ -252,6 +253,20 @@ class Hud_state:
         nutcracker_turn.draw()
         
         pygame.display.flip()
+        
+    def mask(self):
+        screen.blit(background, (0, 0))
+        pygame.draw.rect(screen, (0, 0, 0), nav_bar)
+        back_button.draw()
+        stop_sound_button.draw()
+
+        mask_attack.draw()
+        mask_chase.draw()
+        mask_cry.draw()
+        mask_laugh.draw()
+        mask_possessing.draw()
+        
+        pygame.display.flip()
 
     def state_manager(self):
         """state_manager se charge d'afficher la bonne interface en fonction de l'état de self.state
@@ -283,6 +298,8 @@ class Hud_state:
                 self.loot_bug()
             case "Nutcracker":
                 self.nutcracker()
+            case "Mask":
+                self.mask()
 
 # pygame setup
 pygame.init()
@@ -315,6 +332,7 @@ bracken = Button(pygame.Rect(10, 295, 185, 50), "Bracken")
 forestkeeper = Button(pygame.Rect(205, 295, 185, 50), "Forest keeper")
 lootbug = Button(pygame.Rect(10, 355, 185, 50), "Loot bug")
 nutcracker = Button(pygame.Rect(205, 355, 185, 50), "Nutcracker")
+mask = Button(pygame.Rect(10, 415, 185, 50), "Mask")
 # Boutons sons
 # Jester
 jester_music = Button(pygame.Rect(10, 55, 380, 50), "Jester music", f"{current_folder}jester_sounds\music.mp3")
@@ -392,6 +410,12 @@ nutcracker_headup = Button(pygame.Rect(10, 175, 380, 50), "Nutcracker head up", 
 nutcracker_music = Button(pygame.Rect(10, 235, 380, 50), "Nutcracker music", f"{current_folder}nutcracker_sounds\music.mp3")
 nutcracker_shotgunblast = Button(pygame.Rect(10, 295, 380, 50), "Nutcracker shotgun blast", f"{current_folder}nutcracker_sounds\shotgunblast.mp3")
 nutcracker_turn = Button(pygame.Rect(10, 355, 380, 50), "Nutcracker turn", f"{current_folder}nutcracker_sounds\\turn.mp3")
+# Mask
+mask_attack = Button(pygame.Rect(10, 55, 380, 50), "Mask attack", f"{current_folder}mask_sounds\\attack.mp3")
+mask_chase = Button(pygame.Rect(10, 115, 380, 50), "Mask chase", f"{current_folder}mask_sounds\chase.mp3")
+mask_cry = Button(pygame.Rect(10, 175, 380, 50), "Mask cry", f"{current_folder}mask_sounds\cry.mp3")
+mask_laugh = Button(pygame.Rect(10, 235, 380, 50), "Mask laugh", f"{current_folder}mask_sounds\laugh.mp3")
+mask_possessing = Button(pygame.Rect(10, 295, 380, 50), "Mask possessing", f"{current_folder}mask_sounds\possessing.mp3")
 
 if __name__ == "__main__":
     while running:

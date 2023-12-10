@@ -77,6 +77,7 @@ class Hud_state:
         bracken.draw()
         forestkeeper.draw()
         lootbug.draw()
+        nutcracker.draw()
 
         pygame.display.flip()
 
@@ -236,6 +237,21 @@ class Hud_state:
         lootbug_walk.draw()
         
         pygame.display.flip()
+        
+    def nutcracker(self):
+        screen.blit(background, (0, 0))
+        pygame.draw.rect(screen, (0, 0, 0), nav_bar)
+        back_button.draw()
+        stop_sound_button.draw()
+
+        nutcracker_bootstomp.draw()
+        nutcracker_die.draw()
+        nutcracker_headup.draw()
+        nutcracker_music.draw()
+        nutcracker_shotgunblast.draw()
+        nutcracker_turn.draw()
+        
+        pygame.display.flip()
 
     def state_manager(self):
         """state_manager se charge d'afficher la bonne interface en fonction de l'état de self.state
@@ -265,6 +281,8 @@ class Hud_state:
                 self.forest_keeper()
             case "Loot bug":
                 self.loot_bug()
+            case "Nutcracker":
+                self.nutcracker()
 
 # pygame setup
 pygame.init()
@@ -296,6 +314,7 @@ landmine = Button(pygame.Rect(205, 235, 185, 50), "Landmine")
 bracken = Button(pygame.Rect(10, 295, 185, 50), "Bracken")
 forestkeeper = Button(pygame.Rect(205, 295, 185, 50), "Forest keeper")
 lootbug = Button(pygame.Rect(10, 355, 185, 50), "Loot bug")
+nutcracker = Button(pygame.Rect(205, 355, 185, 50), "Nutcracker")
 # Boutons sons
 # Jester
 jester_music = Button(pygame.Rect(10, 55, 380, 50), "Jester music", f"{current_folder}jester_sounds\music.mp3")
@@ -366,6 +385,13 @@ lootbug_cry = Button(pygame.Rect(10, 175, 380, 50), "Loot bug cry", f"{current_f
 lootbug_die = Button(pygame.Rect(10, 235, 380, 50), "Loot bug die", f"{current_folder}lootbug_sounds\die.mp3")
 lootbug_fly = Button(pygame.Rect(10, 295, 380, 50), "Loot bug fly", f"{current_folder}lootbug_sounds\\fly.mp3")
 lootbug_walk = Button(pygame.Rect(10, 355, 380, 50), "Loot bug walk", f"{current_folder}lootbug_sounds\walk.mp3")
+# Nutcracker
+nutcracker_bootstomp = Button(pygame.Rect(10, 55, 380, 50), "Nutcracker boot stomp", f"{current_folder}nutcracker_sounds\\bootstomp.mp3")
+nutcracker_die = Button(pygame.Rect(10, 115, 380, 50), "Nutcracker die", f"{current_folder}nutcracker_sounds\die.mp3")
+nutcracker_headup = Button(pygame.Rect(10, 175, 380, 50), "Nutcracker head up", f"{current_folder}nutcracker_sounds\headup.mp3")
+nutcracker_music = Button(pygame.Rect(10, 235, 380, 50), "Nutcracker music", f"{current_folder}nutcracker_sounds\music.mp3")
+nutcracker_shotgunblast = Button(pygame.Rect(10, 295, 380, 50), "Nutcracker shotgun blast", f"{current_folder}nutcracker_sounds\shotgunblast.mp3")
+nutcracker_turn = Button(pygame.Rect(10, 355, 380, 50), "Nutcracker turn", f"{current_folder}nutcracker_sounds\\turn.mp3")
 
 if __name__ == "__main__":
     while running:

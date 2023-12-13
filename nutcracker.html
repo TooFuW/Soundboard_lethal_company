@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Nutcracker Sounds</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div>
+        <button onclick="playSoundFunction('nutcracker_sounds\\bootstomp.mp3')">Nutcracker boot stomp</button>
+        <button onclick="playSoundFunction('nutcracker_sounds\\die.mp3')">Nutcracker die</button>
+        <button onclick="playSoundFunction('nutcracker_sounds\\headup.mp3')">Nutcracker head up</button>
+        <button onclick="playSoundFunction('nutcracker_sounds\\music.mp3')">Nutcracker music</button>
+        <button onclick="playSoundFunction('nutcracker_sounds\\shotgunblast.mp3')">Nutcracker shotgun blast</button>
+        <button onclick="playSoundFunction('nutcracker_sounds\\turn.mp3')">Nutcracker turn</button>
+        <button onclick="stopSound()">Stop Sound</button>
+    </div>
+    <script>
+        var audio_actuel = null;
+
+        function playSoundFunction(soundFile) {
+            // On arrête le son en cours si on en lance un nouveau
+            if (audio_actuel !== null) {
+                audio_actuel.pause();
+                audio_actuel.currentTime = 0;
+            }
+        
+            // On joue le nouveau son
+            var audio = new Audio(soundFile);
+            audio.play();
+            
+            // On redéfinit la variable de son en cours au nouveau son
+            audio_actuel = audio;
+        }
+
+        function stopSound() {
+            // On arrête le son en cours
+            if (audio_actuel !== null) {
+                audio_actuel.pause();
+                audio_actuel.currentTime = 0;
+                audio_actuel = null
+            }}
+    </script>
+</body>
+</html>

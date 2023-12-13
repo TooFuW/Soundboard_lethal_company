@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Landmine Sounds</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div>
+        <button onclick="playSoundFunction('landmine_sounds\\beep.mp3')">Landmine beep</button>
+        <button onclick="playSoundFunction('landmine_sounds\\detonate.mp3')">Landmine detonate</button>
+        <button onclick="playSoundFunction('landmine_sounds\\detonatedistance.mp3')">Landmine detonate distance</button>
+        <button onclick="playSoundFunction('landmine_sounds\\press.mp3')">Landmine press</button>
+        <button onclick="playSoundFunction('landmine_sounds\\trigger.mp3')">Landmine trigger</button>
+        <button onclick="stopSound()">Stop Sound</button>
+    </div>
+    <script>
+        var audio_actuel = null;
+
+        function playSoundFunction(soundFile) {
+            // On arrête le son en cours si on en lance un nouveau
+            if (audio_actuel !== null) {
+                audio_actuel.pause();
+                audio_actuel.currentTime = 0;
+            }
+        
+            // On joue le nouveau son
+            var audio = new Audio(soundFile);
+            audio.play();
+            
+            // On redéfinit la variable de son en cours au nouveau son
+            audio_actuel = audio;
+        }
+
+        function stopSound() {
+            // On arrête le son en cours
+            if (audio_actuel !== null) {
+                audio_actuel.pause();
+                audio_actuel.currentTime = 0;
+                audio_actuel = null
+            }}
+    </script>
+</body>
+</html>

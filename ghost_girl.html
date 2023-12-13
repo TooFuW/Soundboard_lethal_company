@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ghost Girl Sounds</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div>
+    <button onclick="playSoundFunction('ghostgirl_sounds\\breathe1.mp3')">Ghost girl breathe 1</button>
+    <button onclick="playSoundFunction('ghostgirl_sounds\\breathe2.mp3')">Ghost girl breathe 2</button>
+    <button onclick="playSoundFunction('ghostgirl_sounds\\laugh.mp3')">Ghost girl laugh</button>
+    <button onclick="playSoundFunction('ghostgirl_sounds\\longskipwalk.mp3')">Ghost girl long skipwalk</button>
+    <button onclick="playSoundFunction('ghostgirl_sounds\\shortskipwalk.mp3')">Ghost girl short skipwalk</button>
+    <button onclick="playSoundFunction('ghostgirl_sounds\\voicecry1.mp3')">Ghost girl voicecry 1</button>
+    <button onclick="playSoundFunction('ghostgirl_sounds\\voicecry2.mp3')">Ghost girl voicecry 2</button>
+    <button onclick="playSoundFunction('ghostgirl_sounds\\voicehey.mp3')">Ghost girl voicehey</button>
+    <button onclick="stopSound()">Stop Sound</button>
+</div>
+<script>
+    var audio_actuel = null;
+
+    function playSoundFunction(soundFile) {
+        // On arrête le son en cours si on en lance un nouveau
+        if (audio_actuel !== null) {
+            audio_actuel.pause();
+            audio_actuel.currentTime = 0;
+        }
+    
+        // On joue le nouveau son
+        var audio = new Audio(soundFile);
+        audio.play();
+        
+        // On redéfinit la variable de son en cours au nouveau son
+        audio_actuel = audio;
+    }
+
+    function stopSound() {
+        // On arrête le son en cours
+        if (audio_actuel !== null) {
+            audio_actuel.pause();
+            audio_actuel.currentTime = 0;
+            audio_actuel = null
+        }}
+</script>
+</body>
+</html>

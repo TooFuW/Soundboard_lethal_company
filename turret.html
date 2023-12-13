@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Turret Sounds</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div>
+        <button onclick="playSoundFunction('turret_sounds\\activate.mp3')">Turret activate</button>
+        <button onclick="playSoundFunction('turret_sounds\\bersekmode.mp3')">Turret berserk Mode</button>
+        <button onclick="playSoundFunction('turret_sounds\\desactivate.mp3')">Turret deactivate</button>
+        <button onclick="playSoundFunction('turret_sounds\\fire.mp3')">Turret fire</button>
+        <button onclick="playSoundFunction('turret_sounds\\firedistance.mp3')">Turret fire distance</button>
+        <button onclick="playSoundFunction('turret_sounds\\seeplayer.mp3')">Turret see player</button>
+        <button onclick="playSoundFunction('turret_sounds\\wallhits.mp3')">Turret wall hits</button>
+        <button onclick="stopSound()">Stop Sound</button>
+    </div>
+    <script>
+        var audio_actuel = null;
+
+        function playSoundFunction(soundFile) {
+            // On arrête le son en cours si on en lance un nouveau
+            if (audio_actuel !== null) {
+                audio_actuel.pause();
+                audio_actuel.currentTime = 0;
+            }
+        
+            // On joue le nouveau son
+            var audio = new Audio(soundFile);
+            audio.play();
+            
+            // On redéfinit la variable de son en cours au nouveau son
+            audio_actuel = audio;
+        }
+
+        function stopSound() {
+            // On arrête le son en cours
+            if (audio_actuel !== null) {
+                audio_actuel.pause();
+                audio_actuel.currentTime = 0;
+                audio_actuel = null
+            }}
+    </script>
+</body>
+</html>

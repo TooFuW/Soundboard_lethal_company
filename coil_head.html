@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Coil Head Sounds</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div>
+        <button onclick="playSoundFunction('coilhead_sounds\\footstep.mp3')">Coil head footstep</button>
+        <button onclick="playSoundFunction('coilhead_sounds\\kill.mp3')">Coil head kill</button>
+        <button onclick="playSoundFunction('coilhead_sounds\\spring1.mp3')">Coil head spring 1</button>
+        <button onclick="playSoundFunction('coilhead_sounds\\spring2.mp3')">Coil head spring 2</button>
+        <button onclick="playSoundFunction('coilhead_sounds\\spring3.mp3')">Coil head spring 3</button>
+        <button onclick="playSoundFunction('coilhead_sounds\\springwobble1.mp3')">Coil head wobble 1</button>
+        <button onclick="playSoundFunction('coilhead_sounds\\springwobble2.mp3')">Coil head wobble 2</button>
+        <button onclick="stopSound()">Stop Sound</button>
+    </div>
+    <script>
+        var audio_actuel = null;
+
+        function playSoundFunction(soundFile) {
+            // On arrête le son en cours si on en lance un nouveau
+            if (audio_actuel !== null) {
+                audio_actuel.pause();
+                audio_actuel.currentTime = 0;
+            }
+        
+            // On joue le nouveau son
+            var audio = new Audio(soundFile);
+            audio.play();
+            
+            // On redéfinit la variable de son en cours au nouveau son
+            audio_actuel = audio;
+        }
+
+        function stopSound() {
+            // On arrête le son en cours
+            if (audio_actuel !== null) {
+                audio_actuel.pause();
+                audio_actuel.currentTime = 0;
+                audio_actuel = null
+            }}
+    </script>
+</body>
+</html>

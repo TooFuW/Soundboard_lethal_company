@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Bracken Sounds</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div>
+        <button onclick="playSoundFunction('bracken_sounds\\angered.mp3')">Bracken angered</button>
+        <button onclick="playSoundFunction('bracken_sounds\\crackneck.mp3')">Bracken crackneck</button>
+        <button onclick="playSoundFunction('bracken_sounds\\stun.mp3')">Bracken stun</button>
+        <button onclick="stopSound()">Stop Sound</button>
+    </div>
+    <script>
+        var audio_actuel = null;
+
+        function playSoundFunction(soundFile) {
+            // On arrête le son en cours si on en lance un nouveau
+            if (audio_actuel !== null) {
+                audio_actuel.pause();
+                audio_actuel.currentTime = 0;
+            }
+        
+            // On joue le nouveau son
+            var audio = new Audio(soundFile);
+            audio.play();
+            
+            // On redéfinit la variable de son en cours au nouveau son
+            audio_actuel = audio;
+        }
+
+        function stopSound() {
+            // On arrête le son en cours
+            if (audio_actuel !== null) {
+                audio_actuel.pause();
+                audio_actuel.currentTime = 0;
+                audio_actuel = null
+            }}
+    </script>
+</body>
+</html>

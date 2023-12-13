@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Jester Sounds</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <nav>
+        <a href="main.html"><h1>Soundboard Lethal Company</h1></a>
+        <button onclick="stopSound()"><span>Stop Sound</span></button>
+    </nav>
+    <div>
+        <button onclick="playSoundFunction('jester_sounds\\music.mp3')"><span>Jester music</span></button>
+        <button onclick="playSoundFunction('jester_sounds\\stomp.mp3')"><span>Jester stomp</span></button>
+        <button onclick="playSoundFunction('jester_sounds\\turncranck.mp3')"><span>Jester turncranck</span></button>
+        <button onclick="playSoundFunction('jester_sounds\\pop.mp3')"><span>Jester pop</span></button>
+    </div>
+    <script>
+        var audio_actuel = null;
+
+        function playSoundFunction(soundFile) {
+            // On arrête le son en cours si on en lance un nouveau
+            if (audio_actuel !== null) {
+                audio_actuel.pause();
+                audio_actuel.currentTime = 0;
+            }
+        
+            // On joue le nouveau son
+            var audio = new Audio(soundFile);
+            audio.play();
+            
+            // On redéfinit la variable de son en cours au nouveau son
+            audio_actuel = audio;
+        }
+
+        function stopSound() {
+            // On arrête le son en cours
+            if (audio_actuel !== null) {
+                audio_actuel.pause();
+                audio_actuel.currentTime = 0;
+                audio_actuel = null
+            }}
+    </script>
+</body>
+</html>

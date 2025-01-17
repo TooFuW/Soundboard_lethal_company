@@ -1,3 +1,5 @@
-# Soundboard pour Lethal Company en python et web
+# Soundboard for Lethal Company in python and html
 
-Soundboard pour Lethal Company en python avec pygame et web
+Soundboard for Lethal Company in python with pygame and html
+
+Code in French
